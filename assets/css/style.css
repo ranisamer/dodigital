@@ -141,9 +141,10 @@ ul { list-style: none; }
 .cat-card--feature h3 { color: #fff; font-size: 32px; }
 .cat-card--feature p { color: rgba(255,255,255,.7); }
 .cat-card--feature .link-arrow { color: var(--accent); }
-.cat-card--feature::after { content: ""; position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(20,174,207,.45), transparent 70%); inset-inline-start: -120px; bottom: -160px; }
-.cat-card__book { position: absolute; inset-inline-start: 36px; bottom: -40px; width: 210px; transform: rotate(-8deg); border-radius: 10px; box-shadow: 0 30px 60px rgba(0,0,0,.4); z-index: 1; }
-.cat-card--feature .cat-card__body { position: relative; z-index: 2; max-width: 52%; }
+.cat-card--feature::after { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(20,174,207,.4), transparent 70%); left: 50%; transform: translateX(-50%); bottom: -170px; }
+.cat-card__book { position: relative; z-index: 1; display: block; width: 230px; max-width: 70%; margin: 34px auto 0; transform: rotate(-4deg); border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,.45); transition: transform .3s; }
+.cat-card--feature:hover .cat-card__book { transform: rotate(0deg) scale(1.03); }
+.cat-card--feature .cat-card__body { position: relative; z-index: 2; }
 .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 99px; }
 .badge--green { background: var(--accent-50); color: #17A75C; }
 .badge--amber { background: #FFF4E5; color: #C47700; }
@@ -346,7 +347,7 @@ ul { list-style: none; }
   .hero__person { width: 340px; }
   .hero__ring { width: 400px; height: 400px; bottom: -100px; }
   .cats { grid-template-columns: 1fr; }
-  .cat-card--feature { grid-row: auto; min-height: 380px; }
+  .cat-card--feature { grid-row: auto; }
   .feature, .pd, .contact, .band { grid-template-columns: 1fr; }
   .pd__media { position: static; }
   .prompts, .posts, .products-grid { grid-template-columns: 1fr 1fr; }
@@ -367,9 +368,7 @@ ul { list-style: none; }
   .head h2 { font-size: 29px; }
   .prompts, .posts, .products-grid, .why, .footer__grid, .form .row2 { grid-template-columns: 1fr; }
   .cat-card { padding: 28px; }
-  .cat-card--feature .cat-card__body { max-width: 100%; }
-  .cat-card__book { width: 150px; inset-inline-start: auto; inset-inline-end: 20px; bottom: -30px; opacity: .9; }
-  .cat-card--feature { min-height: 440px; }
+  .cat-card__book { width: 190px; }
   .feature__media { padding: 30px; }
   .band { padding: 40px 24px; }
   .band h2 { font-size: 30px; }

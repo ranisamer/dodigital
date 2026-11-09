@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://dodigital.me/</loc></url>
-  <url><loc>https://dodigital.me/products.html</loc></url>
-  <url><loc>https://dodigital.me/product-chatgpt.html</loc></url>
-  <url><loc>https://dodigital.me/course-marketing-strategy.html</loc></url>
-  <url><loc>https://dodigital.me/blog.html</loc></url>
-  <url><loc>https://dodigital.me/contact.html</loc></url>
+  <url><loc>https://dodigital.me/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/products.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/books.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/product-chatgpt.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/templates.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/prompts.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/blog.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/contact.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/digital-marketing-strategy.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/chatgpt-for-marketing.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://dodigital.me/copywriting-formulas.html</loc><lastmod>2026-11-09</lastmod></url>
 </urlset>

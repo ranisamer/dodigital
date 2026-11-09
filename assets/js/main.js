@@ -1,5 +1,5 @@
 // DoDigital — small site script (no libraries needed)
-const WHATSAPP = "971568841083"; // WhatsApp number used by every "buy / contact" button
+const WHATSAPP = "971552473989"; // WhatsApp number used by every "buy / contact" button
 const EMAIL = "info@dodigital.me";
 
 document.addEventListener("DOMContentLoaded", () => {

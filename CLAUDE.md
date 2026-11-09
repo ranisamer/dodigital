@@ -11,3 +11,4 @@
 - When adding a page: copy an existing inner page (e.g. `blog.html`), add it to `sitemap.xml`, and link it from the header menu if needed.
 - Never commit secrets or WordPress backups (`*.sql`, `*.sql.gz`, `wp-config.php`). The repo is public.
 - Icons: Font Awesome 6 is self-hosted in `assets/vendor/fontawesome`.
+- Cache busting: pages load `style.css`, `main.js` and Font Awesome with `?v=YYYYMMDDx`. Whenever you change CSS or JS, bump that version string in every `.html` page, otherwise visitors keep the old cached file and the layout breaks.

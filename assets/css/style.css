@@ -395,3 +395,13 @@ ul { list-style: none; }
   .form-card { padding: 26px; }
   .prose h2 { font-size: 25px; }
 }
+
+/* ---------- blog photos ---------- */
+.cover--photo { background: var(--bg); }
+.cover--photo::before, .cover--photo::after { display: none; }
+.cover--photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.post:hover .cover--photo img { transform: scale(1.05); }
+.hero-photo { margin: 0 0 40px; }
+.hero-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
+.hero-photo figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; text-align: center; }
+.prose .hero-photo figcaption a { font-weight: 600; border-bottom-width: 1px; }

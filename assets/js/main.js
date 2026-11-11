@@ -35,13 +35,31 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => { btn.classList.remove("done"); btn.innerHTML = old; }, 1800);
   }));
 
-  // prompt category tabs
+  // prompt library: open in AI, category tabs + search
+  document.querySelectorAll(".prompt [data-ai]").forEach(a => {
+    const q = encodeURIComponent(a.closest(".prompt").querySelector("pre").innerText.trim());
+    a.href = a.dataset.ai === "claude" ? "https://claude.ai/new?q=" + q : "https://chatgpt.com/?q=" + q;
+  });
   const tabs = document.querySelectorAll("[data-filter]");
+  const search = document.querySelector("[data-prompt-search]");
+  const count = document.querySelector("[data-prompt-count]");
+  const none = document.querySelector("[data-no-results]");
+  let filter = "all";
+  const applyPrompts = () => {
+    const q = search ? search.value.trim().toLowerCase() : "";
+    let n = 0;
+    document.querySelectorAll(".prompt[data-cat]").forEach(p => {
+      const show = (filter === "all" || p.dataset.cat === filter) && (!q || p.textContent.toLowerCase().includes(q));
+      p.hidden = !show; if (show) n++;
+    });
+    if (count) count.textContent = n + " برومبت";
+    if (none) none.hidden = n > 0;
+  };
   tabs.forEach(tab => tab.addEventListener("click", () => {
     tabs.forEach(t => t.classList.toggle("active", t === tab));
-    const f = tab.dataset.filter;
-    document.querySelectorAll(".prompt[data-cat]").forEach(p => { p.hidden = f !== "all" && p.dataset.cat !== f; });
+    filter = tab.dataset.filter; applyPrompts();
   }));
+  if (search) search.addEventListener("input", applyPrompts);
 
   // newsletter → opens the visitor's email app addressed to DoDigital
   document.querySelectorAll("[data-newsletter]").forEach(form => form.addEventListener("submit", e => {

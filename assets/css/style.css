@@ -405,3 +405,4 @@ ul { list-style: none; }
 .hero-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
 .hero-photo figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; text-align: center; }
 .prose .hero-photo figcaption a { font-weight: 600; border-bottom-width: 1px; }
+.footer__bottom .legal a:hover { color: var(--primary-600); }

@@ -60,6 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
     filter = tab.dataset.filter; applyPrompts();
   }));
   if (search) search.addEventListener("input", applyPrompts);
+  document.querySelectorAll("[data-goto]").forEach(b => b.addEventListener("click", () => {
+    const t = document.querySelector('[data-filter="' + b.dataset.goto + '"]');
+    if (t) { t.click(); t.scrollIntoView({ behavior: "smooth", block: "center" }); }
+  }));
+  const hashTab = location.hash && document.querySelector('[data-filter="' + location.hash.slice(1) + '"]');
+  if (hashTab) hashTab.click();
 
   // 3D book viewer: drag to rotate, click/Enter to flip, gentle idle sway
   document.querySelectorAll("[data-book3d]").forEach(book => {

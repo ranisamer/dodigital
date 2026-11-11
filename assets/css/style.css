@@ -472,3 +472,11 @@ ul { list-style: none; }
 .lightbox .nav--prev { inset-inline-end: auto; inset-inline-start: 18px; }
 .lightbox .nav--next { inset-inline-end: 18px; top: 50%; }
 @media (max-width: 900px) { .inside__grid { grid-template-columns: repeat(2, 1fr); } }
+
+.money-banner { width: 100%; display: flex; align-items: center; gap: 16px; text-align: start; font-family: inherit; cursor: pointer; border: 0; border-radius: 18px; padding: 18px 22px; margin-bottom: 22px; color: #fff; background: radial-gradient(400px 200px at 0% 0%, rgba(43,217,123,.45), transparent 70%), linear-gradient(120deg, #0B1026, #13305A); box-shadow: var(--shadow); }
+.money-banner:hover { transform: translateY(-2px); }
+.money-banner__ic { flex-shrink: 0; width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-size: 24px; background: linear-gradient(135deg, var(--primary), var(--accent)); }
+.money-banner b { display: block; font-size: 19px; }
+.money-banner small { display: block; font-size: 14px; opacity: .8; margin-top: 3px; line-height: 1.7; }
+.money-banner > i { margin-inline-start: auto; opacity: .8; }
+.prompt__top .badge { white-space: nowrap; flex-shrink: 0; }

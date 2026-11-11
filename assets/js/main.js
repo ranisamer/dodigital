@@ -61,6 +61,45 @@ document.addEventListener("DOMContentLoaded", () => {
   }));
   if (search) search.addEventListener("input", applyPrompts);
 
+  // 3D book viewer: drag to rotate, click/Enter to flip, gentle idle sway
+  document.querySelectorAll("[data-book3d]").forEach(book => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let ry = -28, rx = 4, idle = !reduce, t0 = performance.now(), drag = null;
+    const set = () => { book.style.setProperty("--ry", ry + "deg"); book.style.setProperty("--rx", rx + "deg"); };
+    const tick = now => { if (idle) { ry = -24 + Math.sin((now - t0) / 1400) * 16; set(); } requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+    const flip = () => { idle = false; book.classList.add("anim"); ry += 180; rx = 4; set(); };
+    book.addEventListener("pointerdown", e => { idle = false; book.classList.remove("anim"); drag = { x: e.clientX, y: e.clientY, ry, rx, moved: false }; book.setPointerCapture(e.pointerId); book.classList.add("dragging"); });
+    book.addEventListener("pointermove", e => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (Math.abs(dx) + Math.abs(dy) > 5) drag.moved = true;
+      ry = drag.ry + dx * 0.6; rx = Math.max(-25, Math.min(25, drag.rx - dy * 0.3)); set();
+    });
+    const end = () => { if (!drag) return; const wasClick = !drag.moved; drag = null; book.classList.remove("dragging"); if (wasClick) flip(); };
+    book.addEventListener("pointerup", end); book.addEventListener("pointercancel", end);
+    book.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); }
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") { idle = false; book.classList.add("anim"); ry += e.key === "ArrowLeft" ? -30 : 30; set(); }
+    });
+  });
+
+  // look-inside gallery lightbox
+  document.querySelectorAll("[data-inside]").forEach(gal => {
+    const items = [...gal.querySelectorAll("button")];
+    const box = document.createElement("div"); box.className = "lightbox"; box.hidden = true;
+    box.innerHTML = '<img alt=""><button type="button" aria-label="إغلاق"><i class="fas fa-xmark"></i></button><button type="button" class="nav nav--prev" aria-label="السابق"><i class="fas fa-chevron-right"></i></button><button type="button" class="nav nav--next" aria-label="التالي"><i class="fas fa-chevron-left"></i></button>';
+    document.body.appendChild(box);
+    const img = box.querySelector("img"); let i = 0;
+    const show = n => { i = (n + items.length) % items.length; img.src = items[i].dataset.full; img.alt = items[i].querySelector("img").alt; box.hidden = false; };
+    items.forEach((b, n) => b.addEventListener("click", () => show(n)));
+    const [close, prev, next] = box.querySelectorAll("button");
+    close.addEventListener("click", () => { box.hidden = true; });
+    prev.addEventListener("click", () => show(i - 1)); next.addEventListener("click", () => show(i + 1));
+    box.addEventListener("click", e => { if (e.target === box) box.hidden = true; });
+    document.addEventListener("keydown", e => { if (box.hidden) return; if (e.key === "Escape") box.hidden = true; if (e.key === "ArrowLeft") show(i + 1); if (e.key === "ArrowRight") show(i - 1); });
+  });
+
   // newsletter → opens the visitor's email app addressed to DoDigital
   document.querySelectorAll("[data-newsletter]").forEach(form => form.addEventListener("submit", e => {
     e.preventDefault();

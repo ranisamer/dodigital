@@ -480,3 +480,8 @@ ul { list-style: none; }
 .money-banner small { display: block; font-size: 14px; opacity: .8; margin-top: 3px; line-height: 1.7; }
 .money-banner > i { margin-inline-start: auto; opacity: .8; }
 .prompt__top .badge { white-space: nowrap; flex-shrink: 0; }
+
+/* ---------- English (LTR) pages under /en/ ---------- */
+html[dir="ltr"] body { direction: ltr; }
+@media (max-width: 991px) { html[dir="ltr"] .nav:not(.open) { transform: translateX(-110%); } }
+html[dir="ltr"] .side-cta .btn { justify-content: center; }

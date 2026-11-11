@@ -15,7 +15,11 @@
 - Icons: Font Awesome 6 is self-hosted in `assets/vendor/fontawesome`.
 - Cache busting: pages load `style.css`, `main.js` and Font Awesome with `?v=YYYYMMDDx`. Whenever you change CSS or JS, bump that version string in every `.html` page, otherwise visitors keep the old cached file and the layout breaks.
 
-## Daily article routine (used by the scheduled morning/evening runs)
+## English blog (`/en/`)
+- English articles live in `en/` (`lang="en" dir="ltr"`, English header/footer, assets via `../assets/`), index `en/blog.html`. CSS switches to LTR with `html[dir="ltr"]`. Images still go in `assets/img/blog/<slug>.jpg`. Keep `/en/` header/footer identical across English pages. Arabic `blog.html` links to `en/blog.html`.
+- English routine = same steps as below, but: write natural, practical English for an international/Gulf audience (topics: digital products, social media, AI tools, e-commerce, freelancing, marketing in the Middle East); copy an existing `en/*.html` article; caption in English (`Photo: <author> via Wikimedia Commons · License <license>`); add the card to the top of `en/blog.html` and 2–3 "Related articles" cards; link to `../prompts.html`, `../templates.html` or `../product-chatgpt.html` where relevant; add to `sitemap.xml`. Do not add English articles to the Arabic `blog.html` or home page.
+
+## Daily article routine (morning = Arabic, evening = English)
 1. Read `blog.html` to see every existing article; pick a NEW practical topic for small businesses in the Arab market (e.g. email marketing, SEO basics, Instagram/TikTok growth, Google Ads, landing pages, conversion rate, branding, WhatsApp marketing, content calendars, influencer marketing, analytics, customer retention, lead magnets, pricing, AI tools for marketers). Never repeat or closely overlap an existing topic.
 2. Write the article in clear Modern Standard Arabic, at least 1000 words including the FAQ: intro, 6–9 `<h2 id="...">` sections (ASCII ids, no leading digit), lists/tables/`.callout`/`blockquote` where useful, a closing `.callout`, and a 4–5 question FAQ. Practical and honest: no invented statistics, studies, quotes, case studies about real people or testimonials.
 3. Internal links (3+): `prompts.html`, `product-chatgpt.html` or `books.html` where relevant, and 1–2 existing articles. Also add one natural sentence linking to the new article from 1–2 related older articles.

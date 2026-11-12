@@ -485,3 +485,17 @@ ul { list-style: none; }
 html[dir="ltr"] body { direction: ltr; }
 @media (max-width: 991px) { html[dir="ltr"] .nav:not(.open) { transform: translateX(-110%); } }
 html[dir="ltr"] .side-cta .btn { justify-content: center; }
+
+/* ---------- free gift lead form ---------- */
+.gift-box { background: linear-gradient(160deg, #F2FBFE, #EEFBF4); border: 1px solid #CDEFF6; border-radius: 20px; padding: 26px; margin-top: 6px; }
+.gift-box h3 { font-size: 22px; margin-bottom: 6px; } .gift-box h3 i { color: var(--primary); }
+.gift-box > p { color: var(--muted); font-size: 15px; margin-bottom: 16px; }
+.gift-form { display: grid; gap: 12px; }
+.gift-form label { display: grid; gap: 6px; font-weight: 700; font-size: 14px; }
+.gift-form input { height: 52px; border: 1px solid var(--line); border-radius: 12px; padding: 0 16px; font-family: inherit; font-size: 16px; background: #fff; color: var(--ink); }
+.gift-form input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-50); }
+.gift-form small { color: var(--muted); font-size: 13px; }
+.gift-err { color: #D93A3A; font-size: 14px; font-weight: 700; margin: 0; }
+.gift-done p { font-weight: 700; margin-bottom: 14px; } .gift-done p i, .subscribe-done i { color: var(--accent); }
+.subscribe-done { font-weight: 700; padding: 12px 6px; margin: 0; }
+.gift-form[hidden], .gift-done[hidden] { display: none; }

@@ -106,12 +106,56 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", e => { if (box.hidden) return; if (e.key === "Escape") box.hidden = true; if (e.key === "ArrowLeft") show(i + 1); if (e.key === "ArrowRight") show(i - 1); });
   });
 
-  // newsletter → opens the visitor's email app addressed to DoDigital
-  document.querySelectorAll("[data-newsletter]").forEach(form => form.addEventListener("submit", e => {
+  // ===== Leads (free gift + newsletter) =====
+  // Fill these from the Google Form "pre-filled link" to save every signup silently into Google Sheets.
+  // While FORM is empty, signups are sent to DoDigital's WhatsApp instead, so no lead is lost.
+  const LEADS = {
+    FORM: "",          // e.g. "https://docs.google.com/forms/d/e/XXXX/formResponse"
+    NAME: "",          // e.g. "entry.1111111111"
+    EMAIL: "",         // e.g. "entry.2222222222"
+    SOURCE: ""         // optional, e.g. "entry.3333333333"
+  };
+  const saveLead = async (name, email, source) => {
+    if (LEADS.FORM && LEADS.EMAIL) {
+      const fd = new FormData();
+      if (LEADS.NAME) fd.append(LEADS.NAME, name || "");
+      fd.append(LEADS.EMAIL, email);
+      if (LEADS.SOURCE) fd.append(LEADS.SOURCE, source);
+      try { await fetch(LEADS.FORM, { method: "POST", mode: "no-cors", body: fd }); } catch (_) {}
+      return;
+    }
+    const msg = `مرحباً DoDigital 👋\n${source === "gift" ? "أرغب بالهدية المجانية (عينة مخطط 2027)" : "أرغب بالاشتراك في النشرة البريدية"}\nالاسم: ${name || "-"}\nالبريد: ${email}`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+  };
+  const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+
+  // free gift: name + email required before the download appears
+  document.querySelectorAll("[data-gift-form]").forEach(form => {
+    const box = form.closest("[data-gift]"), done = box && box.querySelector("[data-gift-done]");
+    const unlock = () => { form.hidden = true; if (done) done.hidden = false; };
+    try { if (localStorage.getItem("dd_gift") === "1") unlock(); } catch (_) {}
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const name = form.querySelector("[name=name]").value.trim(), email = form.querySelector("[name=email]").value.trim();
+      const err = form.querySelector("[data-err]");
+      if (name.length < 2 || !validEmail(email)) { if (err) err.hidden = false; return; }
+      if (err) err.hidden = true;
+      form.querySelector("button").disabled = true;
+      await saveLead(name, email, "gift");
+      try { localStorage.setItem("dd_gift", "1"); } catch (_) {}
+      unlock();
+      const a = done && done.querySelector("a[download]"); if (a) a.click();
+    });
+  });
+
+  // newsletter forms
+  document.querySelectorAll("[data-newsletter]").forEach(form => form.addEventListener("submit", async e => {
     e.preventDefault();
-    const mail = form.querySelector("input").value.trim();
-    if (!mail) return;
-    location.href = `mailto:${EMAIL}?subject=${encodeURIComponent("اشتراك في النشرة البريدية")}&body=${encodeURIComponent("أرغب بالاشتراك في النشرة البريدية: " + mail)}`;
+    const email = form.querySelector("input[type=email]").value.trim();
+    const nameEl = form.querySelector("[name=name]");
+    if (!validEmail(email)) return;
+    await saveLead(nameEl ? nameEl.value.trim() : "", email, "newsletter");
+    form.innerHTML = '<p class="subscribe-done"><i class="fas fa-circle-check"></i> شكرًا لاشتراكك! ستصلك رسائلنا قريبًا.</p>';
   }));
 
   // contact form → WhatsApp message

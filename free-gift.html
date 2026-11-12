@@ -20,8 +20,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css?v=20261112a">
-<link rel="stylesheet" href="assets/css/style.css?v=20261112a">
+<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css?v=20261112b">
+<link rel="stylesheet" href="assets/css/style.css?v=20261112b">
 </head>
 <body>
 
@@ -70,11 +70,22 @@
           <li><i class="fas fa-check"></i> المخطط الأسبوعي والمخطط اليومي بالساعات</li>
           <li><i class="fas fa-check"></i> متتبع العادات، وميزانية الشهر، ومراجعة الشهر</li>
         </ul>
-        <div class="actions"><a class="btn btn--grad" href="assets/free/dodigital-2027-free-sample.pdf" download><i class="fas fa-download"></i> حمّل الهدية الآن</a><a class="btn btn--line" href="template-planner-2027.html">المخطط الكامل (39 صفحة)</a></div>
-        <div class="callout" style="margin-top:30px"><strong>تريد المزيد من الهدايا؟</strong> اشترك في نشرتنا لتصلك برومبتات ومخططات وعروض جديدة أولًا.
-          <form class="subscribe" data-newsletter style="margin-top:14px"><input type="email" required placeholder="بريدك الإلكتروني" aria-label="بريدك الإلكتروني"><button class="btn btn--grad" type="submit">اشترك مجانًا</button></form>
+        <div class="gift-box" data-gift>
+          <h3><i class="fas fa-gift"></i> احصل على الهدية مجانًا</h3>
+          <p>اكتب اسمك وبريدك الإلكتروني ليظهر رابط التحميل فورًا، وتصلك هدايانا وبرومبتاتنا الجديدة أولًا.</p>
+          <form class="gift-form" data-gift-form novalidate>
+            <label><span>الاسم</span><input name="name" type="text" required autocomplete="name" placeholder="اسمك"></label>
+            <label><span>البريد الإلكتروني</span><input name="email" type="email" required autocomplete="email" placeholder="name@example.com" dir="ltr"></label>
+            <p class="gift-err" data-err hidden>اكتب اسمك وبريدًا إلكترونيًا صحيحًا.</p>
+            <button class="btn btn--grad" type="submit"><i class="fas fa-unlock"></i> أرسل واحصل على الهدية</button>
+            <small>بالتسجيل توافق على <a href="privacy.html">سياسة الخصوصية</a>. لا إزعاج، ويمكنك إلغاء الاشتراك في أي وقت.</small>
+          </form>
+          <div class="gift-done" data-gift-done hidden>
+            <p><i class="fas fa-circle-check"></i> شكرًا لك! هديتك جاهزة:</p>
+            <div class="actions"><a class="btn btn--grad" href="assets/free/dodigital-2027-free-sample.pdf" download><i class="fas fa-download"></i> حمّل الهدية (PDF)</a><a class="btn btn--line" href="template-planner-2027.html">المخطط الكامل</a></div>
+          </div>
         </div>
-        <p style="font-size:14px;color:var(--muted);margin-top:18px">الملف للاستخدام الشخصي. يمكنك مشاركة رابط هذه الصفحة مع أصدقائك.</p>
+        <p style="font-size:14px;color:var(--muted);margin-top:18px">الملف للاستخدام الشخصي. شارك رابط هذه الصفحة مع أصدقائك بدل مشاركة الملف.</p>
       </div>
     </div>
   </section>
@@ -121,6 +132,6 @@
   <div class="footer__bottom"><div class="container"><span>© <span data-year>2026</span> DoDigital. جميع الحقوق محفوظة.</span><span class="legal"><a href="privacy.html">سياسة الخصوصية</a> · <a href="terms.html">الشروط والأحكام</a> · <a href="refund.html">سياسة الاسترجاع</a></span></div></div>
 </footer>
 <a class="wa-float" href="https://wa.me/971552473989" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب"><i class="fab fa-whatsapp"></i></a>
-<script src="assets/js/main.js?v=20261112a"></script>
+<script src="assets/js/main.js?v=20261112b"></script>
 </body>
 </html>

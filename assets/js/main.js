@@ -167,5 +167,41 @@ document.addEventListener("DOMContentLoaded", () => {
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   });
 
+  // ===== Stripe card payments =====
+  // Paste each product's Stripe Payment Link (https://buy.stripe.com/...) next to its page.
+  // While a link is empty, that page keeps the WhatsApp button only.
+  const STRIPE = {
+    "product-chatgpt.html": "",
+    "template-ads-planner.html": "",
+    "template-all-bundle.html": "",
+    "template-facebook-planner.html": "",
+    "template-instagram-planner.html": "",
+    "template-linkedin-planner.html": "",
+    "template-planner-2027.html": "",
+    "template-ramadan-planner.html": "",
+    "template-snapchat-planner.html": "",
+    "template-social-bundle.html": "",
+    "template-social-media-planner.html": "",
+    "template-threads-planner.html": "",
+    "template-tiktok-planner.html": "",
+    "template-white-friday-kit.html": "",
+    "template-x-planner.html": "",
+    "template-youtube-planner.html": "",
+  };
+  const page = location.pathname.split("/").pop() || "index.html";
+  const payLink = STRIPE[page];
+  const waBtn = document.querySelector(".actions .btn--wa");
+  if (payLink && /^https:\/\/buy\.stripe\.com\//.test(payLink) && waBtn) {
+    const pay = document.createElement("a");
+    pay.className = "btn btn--grad"; pay.href = payLink; pay.rel = "noopener";
+    pay.innerHTML = '<i class="fas fa-credit-card"></i> ادفع بالبطاقة وحمّل فورًا';
+    waBtn.parentNode.insertBefore(pay, waBtn); waBtn.parentNode.classList.add("has-pay");
+    waBtn.innerHTML = '<i class="fab fa-whatsapp"></i> أو اطلب عبر واتساب';
+    const note = document.createElement("p");
+    note.className = "pay-note";
+    note.innerHTML = '<span><i class="fas fa-lock"></i> دفع آمن عبر Stripe</span><span>Visa · Mastercard · Apple Pay · Google Pay</span>';
+    waBtn.parentNode.after(note);
+  }
+
   document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 });

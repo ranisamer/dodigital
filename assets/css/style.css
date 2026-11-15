@@ -502,3 +502,7 @@ html[dir="ltr"] body { direction: ltr; }
 .gift-done p { font-weight: 700; margin-bottom: 14px; } .gift-done p i, .subscribe-done i { color: var(--accent); }
 .subscribe-done { font-weight: 700; padding: 12px 6px; margin: 0; }
 .gift-form[hidden], .gift-done[hidden] { display: none; }
+
+.pay-note { margin-top: 12px; font-size: 13.5px; color: var(--muted); display: flex; align-items: center; gap: 4px 12px; flex-wrap: wrap; }
+.pay-note span { display: inline-flex; align-items: center; gap: 6px; }
+@media (max-width: 600px) { .actions.has-pay .btn { flex: 1 1 100%; } }

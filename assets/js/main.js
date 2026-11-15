@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Paste each product's Stripe Payment Link (https://buy.stripe.com/...) next to its page.
   // While a link is empty, that page keeps the WhatsApp button only.
   const STRIPE = {
-    "product-chatgpt.html": "",
+    "product-chatgpt.html": "https://buy.stripe.com/fZueVf8SqeLQ25Z82q5gc0f",
     "template-ads-planner.html": "https://buy.stripe.com/4gMbJ3b0yavA5ibdmK5gc0b",
     "template-all-bundle.html": "https://buy.stripe.com/7sYdRb6KigTYaCvaay5gc0e",
     "template-facebook-planner.html": "https://buy.stripe.com/6oU28t6Ki1Z4h0TbeC5gc02",

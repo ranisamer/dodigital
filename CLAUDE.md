@@ -47,6 +47,7 @@ Treat alignment and reading direction as release requirements. Review the render
 - A number, icon, letter or object meant to sit inside a circle, badge, pill, square or other shape is centred horizontally AND vertically.
 - Check the visible glyph, not the box: Tajawal's line metrics differ for Arabic vs Latin glyphs, so the same padding can look centred in Arabic and high/low in English (or vice versa) — tune per language until it looks centred.
 - Same check for objects inside cards, frames and decorative containers.
+- Known traps: a global `text-align-last: right` on `p` makes the last line of any centred paragraph jump right — set `text-align-last` explicitly wherever alignment changes (title, copyright pages). In Arabic text, a Latin word + punctuation + another Latin word ("Anthropic. Stripe") reverses the reading order — add an RLM (U+200F) after the punctuation, or put an Arabic word between them. Never insert RLM into copy-paste prompts or code.
 
 4. Final visual review
 - Render/export the finished file and inspect every page at normal size and zoomed in (e.g. `pdftoppm -r 150-220` crops) — check the exported output, since fonts and bidi text can render differently after export.

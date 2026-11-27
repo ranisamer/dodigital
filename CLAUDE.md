@@ -28,3 +28,28 @@
 5. Create `<slug>.html` (English kebab-case slug) by copying an existing article page and replacing: title, meta description, canonical/og URLs, breadcrumb category, date (today), read time, hero photo + caption, body, TOC links (must match the h2 ids + `#faq`), FAQ, related articles (3 others), and both JSON-LD blocks (BlogPosting incl. `image`, `datePublished`; FAQPage).
 6. Add the card to the top of `blog.html`, put it first in the home page blog section (`index.html`, keep only the 3 newest there), and add the URL to `sitemap.xml`.
 7. Check locally (`python3 -m http.server`) that every internal link, anchor and image returns 200 and the page renders. Then commit (`git -c user.name=ranisamer -c user.email=ranisamer@users.noreply.github.com commit`) and `git push origin main`.
+
+## Ebook & PDF layout rules (owner's standing rule — apply to every ebook, planner, calendar or PDF product, new or edited)
+Treat alignment and reading direction as release requirements. Review the rendered pages and fix any alignment issues before delivery.
+
+1. Arabic and English layout
+- Arabic text: RTL direction and right alignment — headings, paragraphs, bullets, numbered lists, captions, tables, callouts.
+- English text: LTR direction and left alignment.
+- Bilingual layouts: Arabic on the right, English on the left; align corresponding headings, blocks and rows across both columns even when lengths differ.
+- Preserve correct reading order for numbers, dates, percentages, currencies, URLs and English terms inside Arabic sentences; check punctuation and parentheses in mixed-language lines.
+
+2. Numbers and inline elements
+- Inline numbers sit on the same baseline as the surrounding text (numerals, currency symbols, %, punctuation not raised or lowered).
+- Numbered-list markers align with the first line of each item; wrapped lines align with the item text.
+- Consistent spacing and alignment for numbers in tables and repeated layouts.
+
+3. Centering inside shapes and containers
+- A number, icon, letter or object meant to sit inside a circle, badge, pill, square or other shape is centred horizontally AND vertically.
+- Check the visible glyph, not the box: Tajawal's line metrics differ for Arabic vs Latin glyphs, so the same padding can look centred in Arabic and high/low in English (or vice versa) — tune per language until it looks centred.
+- Same check for objects inside cards, frames and decorative containers.
+
+4. Final visual review
+- Render/export the finished file and inspect every page at normal size and zoomed in (e.g. `pdftoppm -r 150-220` crops) — check the exported output, since fonts and bidi text can render differently after export.
+- Inspect circles/badges/pills, numbered lists, bilingual blocks, tables, captions, headers and page numbers; fix shifts, uneven spacing, clipped text or misalignment, then re-export and recheck the affected pages.
+- When reviewing an existing ebook, preserve wording and overall design; change only what is needed for layout and alignment.
+- Deliver the corrected final file. If the rendered output could not be inspected, say exactly which checks remain unverified.

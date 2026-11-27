@@ -48,6 +48,8 @@ Treat alignment and reading direction as release requirements. Review the render
 - Check the visible glyph, not the box: Tajawal's line metrics differ for Arabic vs Latin glyphs, so the same padding can look centred in Arabic and high/low in English (or vice versa) — tune per language until it looks centred.
 - Same check for objects inside cards, frames and decorative containers.
 - Known traps: a global `text-align-last: right` on `p` makes the last line of any centred paragraph jump right — set `text-align-last` explicitly wherever alignment changes (title, copyright pages). In Arabic text, a Latin word + punctuation + another Latin word ("Anthropic. Stripe") reverses the reading order — add an RLM (U+200F) after the punctuation, or put an Arabic word between them. Never insert RLM into copy-paste prompts or code.
+- Code blocks inside Arabic books: every code line is LTR; each Arabic comment, string or JSX text is one RTL `<bdi>`; a long line with an Arabic comment gets the comment on its own line above. Never let a line overflow the page width (Chrome then shrinks the whole PDF). Arabic prose/markdown lines inside a block stay RTL with Latin runs isolated. Watch the `--` / `#` comment detection (only when followed by a space).
+- Planner traps fixed globally: `/command`, `55+`, `40%` need an LTR isolate; a field row directly above a box needs a gap so the box's pill label doesn't sit on the writing line.
 
 4. Final visual review
 - Render/export the finished file and inspect every page at normal size and zoomed in (e.g. `pdftoppm -r 150-220` crops) — check the exported output, since fonts and bidi text can render differently after export.

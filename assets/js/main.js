@@ -133,16 +133,15 @@ document.addEventListener("DOMContentLoaded", () => {
       jobs.push(fetch(LEADS.FORM, { method: "POST", mode: "no-cors", body: fd }).catch(() => {}));
     }
     if (jobs.length) { await Promise.all(jobs); return; }
-    const msg = `مرحباً DoDigital 👋\n${source === "gift" ? "أرغب بالهدية المجانية (عينة مخطط 2027)" : "أرغب بالاشتراك في النشرة البريدية"}\nالاسم: ${name || "-"}\nالبريد: ${email}`;
+    const msg = `مرحباً DoDigital 👋\n${source === "gift" ? "أرغب بالهدية المجانية (تقويم 2027 المجاني)" : "أرغب بالاشتراك في النشرة البريدية"}\nالاسم: ${name || "-"}\nالبريد: ${email}`;
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   };
   const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 
-  // free gift: name + email required before the download appears
+  // free gift: name + email → Kit; the calendar is emailed after the double opt-in confirmation
   document.querySelectorAll("[data-gift-form]").forEach(form => {
     const box = form.closest("[data-gift]"), done = box && box.querySelector("[data-gift-done]");
     const unlock = () => { form.hidden = true; if (done) done.hidden = false; };
-    try { if (localStorage.getItem("dd_gift") === "1") unlock(); } catch (_) {}
     form.addEventListener("submit", async e => {
       e.preventDefault();
       const name = form.querySelector("[name=name]").value.trim(), email = form.querySelector("[name=email]").value.trim();
@@ -153,7 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
       await saveLead(name, email, "gift");
       try { localStorage.setItem("dd_gift", "1"); } catch (_) {}
       unlock();
-      const a = done && done.querySelector("a[download]"); if (a) a.click();
     });
   });
 

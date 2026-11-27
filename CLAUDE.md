@@ -53,3 +53,24 @@ Treat alignment and reading direction as release requirements. Review the render
 - Inspect circles/badges/pills, numbered lists, bilingual blocks, tables, captions, headers and page numbers; fix shifts, uneven spacing, clipped text or misalignment, then re-export and recheck the affected pages.
 - When reviewing an existing ebook, preserve wording and overall design; change only what is needed for layout and alignment.
 - Deliver the corrected final file. If the rendered output could not be inspected, say exactly which checks remain unverified.
+
+## Product value & print-ready rules (owner's standing rule — applies after the layout rules above, to every ebook, guide, planner or workbook)
+Treat every product as premium: it solves a specific problem for a clearly defined reader, is relevant in 2026, and stays useful when printed and filled in by hand.
+
+1. Define the value before writing
+- Identify who it is for, the problem they need to solve, and what they should be able to do or complete by the end.
+- Build the content around that outcome: every section helps the reader understand something they need, make a decision, or take an action.
+- Use concrete examples, actionable steps and reusable templates. Remove generic advice, repetition and pages that add length without value.
+- Verify time-sensitive claims, tools, prices or platform instructions before presenting them as current for 2026.
+
+2. Design it for printing and handwriting
+- Give a clear place to write wherever the reader is asked to answer, plan, calculate, reflect or take notes.
+- Match space to the task: short field for a date, several lines or a full page for a plan; checkboxes easy to mark; table rows tall enough for handwriting.
+- Include a completed example before a blank worksheet whenever it helps show what a useful answer looks like.
+- Readable type, strong contrast, print-safe margins, light backgrounds; the page must work in black and white with writing lines and boxes still visible.
+- Arabic worksheets start writing areas on the right; English on the left; bilingual pages keep both areas usable without squeezing writing space.
+
+3. Review it from the reader's perspective
+- Complete a representative exercise yourself: are the instructions clear, is the space sufficient, does the finished answer lead to the next step?
+- Review the final PDF at actual print size; fix cramped fields, clipped elements and worksheets split awkwardly across pages.
+- Before delivery, state in one sentence the practical result the reader gets, and point to the pages or tools that achieve it.

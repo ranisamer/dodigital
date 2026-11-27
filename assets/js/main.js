@@ -107,8 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ===== Leads (free gift + newsletter) =====
-  // Fill these from the Google Form "pre-filled link" to save every signup silently into Google Sheets.
-  // While FORM is empty, signups are sent to DoDigital's WhatsApp instead, so no lead is lost.
+  // Every signup goes to the Kit (kit.com) email list, form "Clare form" (id 10251067).
+  // Kit sends the double opt-in confirmation email itself.
+  const KIT_FORM = "https://app.kit.com/forms/10251067/subscriptions";
+  // Optional extra copy into a Google Form → Sheets (leave FORM empty to skip).
   const LEADS = {
     FORM: "",          // e.g. "https://docs.google.com/forms/d/e/XXXX/formResponse"
     NAME: "",          // e.g. "entry.1111111111"
@@ -116,14 +118,21 @@ document.addEventListener("DOMContentLoaded", () => {
     SOURCE: ""         // optional, e.g. "entry.3333333333"
   };
   const saveLead = async (name, email, source) => {
+    const jobs = [];
+    if (KIT_FORM) {
+      const kd = new FormData();
+      kd.append("email_address", email);
+      if (name) kd.append("fields[first_name]", name);
+      jobs.push(fetch(KIT_FORM, { method: "POST", mode: "no-cors", body: kd }).catch(() => {}));
+    }
     if (LEADS.FORM && LEADS.EMAIL) {
       const fd = new FormData();
       if (LEADS.NAME) fd.append(LEADS.NAME, name || "");
       fd.append(LEADS.EMAIL, email);
       if (LEADS.SOURCE) fd.append(LEADS.SOURCE, source);
-      try { await fetch(LEADS.FORM, { method: "POST", mode: "no-cors", body: fd }); } catch (_) {}
-      return;
+      jobs.push(fetch(LEADS.FORM, { method: "POST", mode: "no-cors", body: fd }).catch(() => {}));
     }
+    if (jobs.length) { await Promise.all(jobs); return; }
     const msg = `مرحباً DoDigital 👋\n${source === "gift" ? "أرغب بالهدية المجانية (عينة مخطط 2027)" : "أرغب بالاشتراك في النشرة البريدية"}\nالاسم: ${name || "-"}\nالبريد: ${email}`;
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   };
@@ -154,8 +163,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = form.querySelector("input[type=email]").value.trim();
     const nameEl = form.querySelector("[name=name]");
     if (!validEmail(email)) return;
+    const btn = form.querySelector("button"); if (btn) btn.disabled = true;
     await saveLead(nameEl ? nameEl.value.trim() : "", email, "newsletter");
-    form.innerHTML = '<p class="subscribe-done"><i class="fas fa-circle-check"></i> شكرًا لاشتراكك! ستصلك رسائلنا قريبًا.</p>';
+    form.innerHTML = '<p class="subscribe-done"><i class="fas fa-circle-check"></i> شكرًا لاشتراكك! افتح بريدك واضغط زر التأكيد لتصلك رسائلنا (تفقّد مجلد الرسائل غير المرغوبة أو العروض إن لم تجدها).</p>';
   }));
 
   // contact form → WhatsApp message
